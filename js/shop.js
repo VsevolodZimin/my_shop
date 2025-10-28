@@ -1,113 +1,171 @@
-// If you have time, you can move this variable "products" to a json or js file and load the data in this js. It will look more professional
-const products = [
-    {
-        id: 1,
-        name: 'cooking oil',
-        price: 10.5,
-        type: 'grocery',
-        offer: {
-            number: 3,
-            percent: 20
+import products from './products.json' with { type: 'json' };
+
+const OIL_ID = 1;
+const CUPCAKE_MIXTURE_ID = 3;
+const CHECKOUT_HREF = 'checkout.html'
+let cart = {
+    productList: [],
+    total: 0,
+};
+
+try {
+    const buttons = document.querySelectorAll('.add-to-cart');
+    const cartButton = document.querySelector('.cart-button');
+    const cartListHtml = document.getElementById('cart_list');
+    const totalHtml = document.getElementById('total_price');
+    const checkoutBtn = document.getElementById("checkout-btn");
+    const productCount = document.getElementById("count_product");
+    const cleanCartBtn = document.getElementById("clean-cart");
+
+    if(!buttons) throw new Error('buttons not found!')
+    if(!cartListHtml) throw new Error('cartList not found!')
+    if(!cartButton) throw new Error('cartButton not found!')
+    if(!totalHtml) throw new Error('totalHtml not found!')
+    if(!checkoutBtn) throw new Error('checkoutBtn not found!')
+    if(!productCount) throw new Error('productCount not found!')
+    if(!cleanCartBtn) throw new Error('cleanCartBtn not found!')
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            try{
+                const id = Number(btn.dataset.productId);
+                if(!id || isNaN(id)) throw new Error('Invalid id')
+                buy(id);
+                updateProductCount();
+                applyPromotionsCart(cart);
+            }
+            catch(err){
+                console.error(err);
+                throw err;
+            }
+        })
+    })
+
+    cartButton.addEventListener('click', () => { 
+        printCart(cart.productList)
+    });
+
+    cleanCartBtn.addEventListener('click', () => { 
+        cleanCart();
+        printCart(cart.productList)
+    });
+
+    // Exercise 1
+    const buy = (id) => {
+        const cartItem = cart.productList.find(p => p.id === id);
+        if(cartItem){
+            cartItem.quantity += 1; 
+            cartItem.subtotal = cartItem.price * cartItem.quantity
         }
-    },
-    {
-        id: 2,
-        name: 'Pasta',
-        price: 6.25,
-        type: 'grocery'
-    },
-    {
-        id: 3,
-        name: 'Instant cupcake mixture',
-        price: 5,
-        type: 'grocery',
-        offer: {
-            number: 10,
-            percent: 30
+        else {
+            const product = products.find(p => p.id === id)
+            cart.productList.push({ ...product, quantity: 1, subtotal: product.price })
         }
-    },
-    {
-        id: 4,
-        name: 'All-in-one',
-        price: 260,
-        type: 'beauty'
-    },
-    {
-        id: 5,
-        name: 'Zero Make-up Kit',
-        price: 20.5,
-        type: 'beauty'
-    },
-    {
-        id: 6,
-        name: 'Lip Tints',
-        price: 12.75,
-        type: 'beauty'
-    },
-    {
-        id: 7,
-        name: 'Lawn Dress',
-        price: 15,
-        type: 'clothes'
-    },
-    {
-        id: 8,
-        name: 'Lawn-Chiffon Combo',
-        price: 19.99,
-        type: 'clothes'
-    },
-    {
-        id: 9,
-        name: 'Toddler Frock',
-        price: 9.99,
-        type: 'clothes'
+        console.log(cart.productList);
     }
-]
 
-// => Reminder, it's extremely important that you debug your code. 
-// ** It will save you a lot of time and frustration!
-// ** You'll understand the code better than with console.log(), and you'll also find errors faster. 
-// ** Don't hesitate to seek help from your peers or your mentor if you still struggle with debugging.
+    // Exercise 2
+    function cleanCart() {
+        cart.productList.length = 0;
+        productCount.textContent = 0;
+    }
 
-// Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
-const cart = [];
+    // Exercise 3
+    function calculateTotal(cart) {
+        const rawTotal = cart.total = cart.productList.reduce((acc, currProd) => acc + currProd.subtotal, 0);
+        return Math.round(rawTotal * 100)/100;
+    }
 
-const total = 0;
+    // Exercise 4
+    const applyPromotionsCart = (cart) =>  {
+        const oil = cart.productList.find(el => el.id === OIL_ID);
+        const cupcakeMixture = cart.productList.find(el => el.id === CUPCAKE_MIXTURE_ID);
 
-// Exercise 1
-const buy = (id) => {
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cart array
+        if(oil && oil.quantity > 2){
+            oil.subtotal = calcSubtotalWithDiscount(oil, 20);
+        }
+        if(cupcakeMixture && cupcakeMixture.quantity > 9) {
+            cupcakeMixture.subtotal = calcSubtotalWithDiscount(cupcakeMixture, 30);
+        }
+    }
+
+    // Exercise 5
+    function printCart(productList) {
+        blockcheckoutButton(productList);
+        updateProductCount();
+        cartListHtml.replaceChildren();
+        const rows = productList.map(p => createRow(p));
+        cartListHtml.append(...rows);
+        totalHtml.textContent = calculateTotal(cart);
+    }
+
+    // ** Nivell II **
+
+    // Exercise 7
+    const removeFromCart = (pCart, id) => {
+        pCart.productList = pCart.productList.filter(p => p.id !== id)};
+
+
+    function calcSubtotalWithDiscount(product, percentage){
+        // Floating point calculations might yield an invalid price (e.g. 18.14000000000000003) 
+        const rawPrice = (product.price * ((100 - percentage)/100) * product.quantity); 
+        return Math.round(rawPrice * 100)/100;
+    }
+
+    function blockcheckoutButton(productList){
+	    if(productList.length === 0) {
+            checkoutBtn.removeAttribute('href');
+        }
+        else {
+            checkoutBtn.setAttribute('href', CHECKOUT_HREF);
+        }
+    }
+
+    function createRow(product){
+        const row = document.createElement('tr');
+        const header = document.createElement('th');
+        header.setAttribute('scope', 'col')
+        header.textContent = product.name;
+        const priceCell = createCell(product.price);
+        const quantityCell = createInputCell(product.quantity);
+        const subtotalCell = createCell(product.subtotal);
+        row.append(header, priceCell, quantityCell, subtotalCell);
+        quantityCell.addEventListener('blur', () => {
+            product.quantity = Number(quantityCell.value);
+            if(product.quantity === 0){
+                removeFromCart(cart, product.id)
+            }
+            product.subtotal = product.price * Number(product.quantity);
+            if(product.id === CUPCAKE_MIXTURE_ID || product.id === OIL_ID){
+                applyPromotionsCart(cart)
+            }
+            printCart(cart.productList);
+        })
+        return row;
+    }
+    
+    function createCell(text){
+        if(isNaN(Number(text))) throw new Error ('Cell value is not a number');
+        const col = document.createElement('td');
+        col.textContent = Math.round(Number(text) * 100) / 100;
+        return col;
+    }
+
+    function createInputCell(text){
+        const input = document.createElement('input');
+        input.setAttribute('type', 'number');
+        input.setAttribute('min', '0');
+        input.setAttribute('max', '50');
+        input.value = text;
+        return input;
+    }
+
+    function updateProductCount(){
+        TODO: "CHECK IF NUMBER"
+        productCount.textContent = cart.productList.reduce((acc, curr) => acc + curr.quantity, 0);
+    }
 }
-
-// Exercise 2
-const cleanCart = () =>  {
-
-}
-
-// Exercise 3
-const calculateTotal = () =>  {
-    // Calculate total price of the cart using the "cartList" array
-}
-
-// Exercise 4
-const applyPromotionsCart = () =>  {
-    // Apply promotions to each item in the array "cart"
-}
-
-// Exercise 5
-const printCart = () => {
-    // Fill the shopping cart modal manipulating the shopping cart dom
-}
-
-
-// ** Nivell II **
-
-// Exercise 7
-const removeFromCart = (id) => {
-
-}
-
-const open_modal = () =>  {
-    printCart();
+catch(err){
+    console.error(err);
+    throw err;
 }

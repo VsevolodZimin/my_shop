@@ -38,6 +38,7 @@
 					</button>
 
 					<div class="navbar-nav me-3 me-lg-0 d-flex flex-row align-items-center">
+						<!-- Why isn't "cart-button" an ID?  -->
 						<button class="btn btn-outline-dark cart-button" type="button" data-bs-toggle="modal"
 							data-bs-target="#cartModal" data-bs-auto-close="outside" aria-label="Open shopping cart">
 							<i class="fas fa-shopping-cart me-1" aria-hidden="true"></i>
@@ -330,24 +331,7 @@
 								</tr>
 							</thead>
 							<tbody id="cart_list">
-								<tr>
-									<th scope="row">Cooking oil</th>
-									<td>$10.5</td>
-									<td>2</td>
-									<td>$21</td>
-								</tr>
-								<tr>
-									<th scope="row">Pasta</th>
-									<td>$6.25</td>
-									<td>1</td>
-									<td>$6.25</td>
-								</tr>
-								<tr>
-									<th scope="row">Lawn dress</th>
-									<td>$15</td>
-									<td>3</td>
-									<td>$45</td>
-								</tr>
+								
 							</tbody>
 						</table>
 					</div>
@@ -355,7 +339,7 @@
 						Total: $<span id="total_price">100</span>
 					</div>
 					<div class="text-center">
-						<a href="checkout.html" class="btn btn-primary m-3">Checkout</a>
+						<a id="checkout-btn" href="checkout.html" class="btn btn-primary m-3">Checkout</a>
 						<button type="button" class="btn btn-secondary m-3" id="clean-cart">Clean Cart</button>
 					</div>
 				</div>
@@ -370,7 +354,6 @@
 
 	<!-- Core theme JS-->
 	<script src="js/shop.js" type="module"></script>
-	<script src="js/checkout.js" type="module"></script>
 </body>
 
 </html>
