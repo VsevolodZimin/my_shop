@@ -26,9 +26,9 @@
 
 	<!-- Navigation-->
 	<header class="primary-header">
-		<nav class="navbar py-3 py-lg-0 navbar-light bg-light navbar-expand-lg" id="main-nav">
-			<div class="container">
-				<a class="navbar-brand" href="#!" aria-label="ShopNow Home">ShopNow</a>
+		<nav class="navbar py-2 py-lg-0 navbar-light bg-light navbar-expand-lg" id="main-nav">
+			<div class="container" id="suka">
+				<a class="navbar-brand" href="#!" aria-label="ShopNow Home">Random Stuff</a>
 
 				<aside class="shopping-cart-wrapper d-flex flex-row order-lg-last align-items-center">
 					<button class="navbar-toggler order-last" type="button" data-bs-toggle="collapse"
@@ -79,8 +79,8 @@
 		<section class="hero bg-dark py-5" aria-label="Promotional banner">
 			<div class="container px-4 px-lg-5 my-5">
 				<div class="text-center text-white">
-					<h1 class="display-4 fw-bolder">IT Academy Shop</h1>
-					<p class="lead fw-normal text-white-50 mb-0">Get up to 50% off Today Only!</p>
+					<h1 class="display-4 fw-bolder">Buy our Random stuff</h1>
+					<p class="lead fw-normal text-white-50 mb-0">Get up to 50% off today for things you don't actually need!</p>
 				</div>
 			</div>
 		</section>
@@ -92,68 +92,8 @@
 				<span>Grocery</span>
 			</h2>
 			<div class="container px-4 px-lg-5 mt-5">
-				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				<div id="grocery-card-container" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 					<!-- Product Cards -->
-					<div class="col mb-5">
-						<article class="card product-card h-100">
-							<img class="card-img-top" src="./images/product.svg" alt="Cooking Oil product image"
-								loading="lazy" />
-							<div class="card-body p-4">
-								<div class="text-center">
-									<h3 class="h5 fw-bolder">Cooking Oil</h3>
-									<p class="price">$10.5</p>
-								</div>
-							</div>
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<button type="button" class="btn btn-outline-dark add-to-cart" data-product-id="1"
-										aria-label="Add Cooking Oil to cart">
-										Add to cart
-									</button>
-								</div>
-							</div>
-						</article>
-					</div>
-					<div class="col mb-5">
-						<article class="card product-card h-100">
-							<img class="card-img-top" src="./images/product.svg" alt="Pasta product image"
-								loading="lazy" />
-							<div class="card-body p-4">
-								<div class="text-center">
-									<h3 class="h5 fw-bolder">Pasta</h3>
-									<p class="price">$6.25</p>
-								</div>
-							</div>
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<button type="button" class="btn btn-outline-dark add-to-cart" data-product-id="2"
-										aria-label="Add Pasta to cart">
-										Add to cart
-									</button>
-								</div>
-							</div>
-						</article>
-					</div>
-					<div class="col mb-5">
-						<article class="card product-card h-100">
-							<img class="card-img-top" src="./images/product.svg"
-								alt="Instant cupcake mixture product image" loading="lazy" />
-							<div class="card-body p-4">
-								<div class="text-center">
-									<h3 class="h5 fw-bolder">Instant cupcake mixture</h3>
-									<p class="price">$5</p>
-								</div>
-							</div>
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<button type="button" class="btn btn-outline-dark add-to-cart" data-product-id="3"
-										aria-label="Add Instant cupcake mixture to cart">
-										Add to cart
-									</button>
-								</div>
-							</div>
-						</article>
-					</div>
 				</div>
 			</div>
 		</article>
@@ -162,69 +102,9 @@
 				<i class="fas fa-heart pe-3" aria-hidden="true"></i>
 				<span>Beauty</span>
 			</h2>
-			<div class="container px-4 px-lg-5 mt-5">
-				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<div  class="container px-4 px-lg-5 mt-5">
+				<div id="beauty-card-container" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 					<!-- Product Cards -->
-					<div class="col mb-5">
-						<article class="card product-card h-100">
-							<img class="card-img-top" src="./images/product.svg" alt="All-in-1 product image"
-								loading="lazy" />
-							<div class="card-body p-4">
-								<div class="text-center">
-									<h3 class="h5 fw-bolder">All-in-1</h3>
-									<p class="price">$260</p>
-								</div>
-							</div>
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<button type="button" class="btn btn-outline-dark add-to-cart" data-product-id="4"
-										aria-label="Add All-in-1 to cart">
-										Add to cart
-									</button>
-								</div>
-							</div>
-						</article>
-					</div>
-					<div class="col mb-5">
-						<article class="card product-card h-100">
-							<img class="card-img-top" src="./images/product.svg" alt="Zero makeup kit product image"
-								loading="lazy" />
-							<div class="card-body p-4">
-								<div class="text-center">
-									<h3 class="h5 fw-bolder">Zero makeup kit</h3>
-									<p class="price">$20.5</p>
-								</div>
-							</div>
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<button type="button" class="btn btn-outline-dark add-to-cart" data-product-id="5"
-										aria-label="Add Zero makeup kit to cart">
-										Add to cart
-									</button>
-								</div>
-							</div>
-						</article>
-					</div>
-					<div class="col mb-5">
-						<article class="card product-card h-100">
-							<img class="card-img-top" src="./images/product.svg" alt="Lip tints product image"
-								loading="lazy" />
-							<div class="card-body p-4">
-								<div class="text-center">
-									<h3 class="h5 fw-bolder">Lip tints</h3>
-									<p class="price">$12.75</p>
-								</div>
-							</div>
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<button type="button" class="btn btn-outline-dark add-to-cart" data-product-id="6"
-										aria-label="Add Lip tints to cart">
-										Add to cart
-									</button>
-								</div>
-							</div>
-						</article>
-					</div>
 				</div>
 			</div>
 		</article>
@@ -234,68 +114,8 @@
 				<span>Clothes</span>
 			</h2>
 			<div class="container px-4 px-lg-5 mt-5">
-				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				<div id="clothes-card-container" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 					<!-- Product Cards -->
-					<div class="col mb-5">
-						<article class="card product-card h-100">
-							<img class="card-img-top" src="./images/product.svg" alt="Lawn dress product image"
-								loading="lazy" />
-							<div class="card-body p-4">
-								<div class="text-center">
-									<h3 class="h5 fw-bolder">Lawn dress</h3>
-									<p class="price">$15</p>
-								</div>
-							</div>
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<button type="button" class="btn btn-outline-dark add-to-cart" data-product-id="7"
-										aria-label="Add Lawn dress to cart">
-										Add to cart
-									</button>
-								</div>
-							</div>
-						</article>
-					</div>
-					<div class="col mb-5">
-						<article class="card product-card h-100">
-							<img class="card-img-top" src="./images/product.svg" alt="Lawn-chiffon combo product image"
-								loading="lazy" />
-							<div class="card-body p-4">
-								<div class="text-center">
-									<h3 class="h5 fw-bolder">Lawn-chiffon combo</h3>
-									<p class="price">$19.99</p>
-								</div>
-							</div>
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<button type="button" class="btn btn-outline-dark add-to-cart" data-product-id="8"
-										aria-label="Add Lawn-chiffon combo to cart">
-										Add to cart
-									</button>
-								</div>
-							</div>
-						</article>
-					</div>
-					<div class="col mb-5">
-						<article class="card product-card h-100">
-							<img class="card-img-top" src="./images/product.svg" alt="Toddler Frock product image"
-								loading="lazy" />
-							<div class="card-body p-4">
-								<div class="text-center">
-									<h3 class="h5 fw-bolder">Toddler Frock</h3>
-									<p class="price">$9.99</p>
-								</div>
-							</div>
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<button type="button" class="btn btn-outline-dark add-to-cart" data-product-id="9"
-										aria-label="Add Toddler Frock to cart">
-										Add to cart
-									</button>
-								</div>
-							</div>
-						</article>
-					</div>
 				</div>
 			</div>
 		</article>

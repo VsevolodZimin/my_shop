@@ -1,3 +1,4 @@
+
 [
     {
         "id": 1,
@@ -7,13 +8,17 @@
         "offer": {
             "number": 3,
             "percent": 20
-        }
+        },
+        "image": "../resources/images/oil.jpg",
+        "alt": "oil"
     },
     {
         "id": 2,
         "name": "Pasta",
         "price": 6.25,
-        "type": "grocery"
+        "type": "grocery",
+        "image": "../resources/images/pasta.jpg",
+        "alt": "Pasta"
     },
     {
         "id": 3,
@@ -23,42 +28,130 @@
         "offer": {
             "number": 10,
             "percent": 30
-        }
+        },
+        "image": "../resources/images/cupcake-mix.jpg",
+        "alt": "Instant cupcake mixture"
+    },
+    {
+        "id": 23,
+        "name": "Cranberries",
+        "price": 6,
+        "type": "grocery",
+        "image": "../resources/images/cranberries.jpg",
+        "alt": "Instant cupcake mixture"
+    },
+    {
+        "id": 24,
+        "name": "Milk",
+        "price": 3.50,
+        "type": "grocery",
+        "image": "../resources/images/milk.jpg",
+        "alt": "Instant cupcake mixture"
+    },
+    {
+        "id": 25,
+        "name": "Cheese",
+        "price": 4.80,
+        "type": "grocery",
+        "image": "../resources/images/cheese.jpg",
+        "alt": "Instant cupcake mixture"
     },
     {
         "id": 4,
         "name": "All-in-one",
         "price": 260,
-        "type": "beauty"
+        "type": "beauty",
+        "image": "../resources/images/all-in-one.jpg",
+        "alt": "All-in-one"
     },
+
+    {
+        "id": 10,
+        "name": "Mascara",
+        "price": 10,
+        "type": "beauty",
+        "image": "../resources/images/mascara.jpg",
+        "alt": "All-in-one"
+    },
+    {
+        "id": 11,
+        "name": "Hand Cream",
+        "price": 21,
+        "type": "beauty",
+        "image": "../resources/images/hand-cream.jpg",
+        "alt": "All-in-one"
+    },
+    {
+        "id": 12,
+        "name": "Foundation",
+        "price": 10,
+        "type": "beauty",
+        "image": "../resources/images/foundation.jpg",
+        "alt": "All-in-one"
+    },
+    
     {
         "id": 5,
         "name": "Zero Make-up Kit",
         "price": 20.5,
-        "type": "beauty"
+        "type": "beauty",
+        "image": "../resources/images/zero-kit.jpg",
+        "alt": "Zero Make-up Kit"
     },
     {
         "id": 6,
         "name": "Lip Tints",
         "price": 12.75,
-        "type": "beauty"
+        "type": "beauty",
+        "image": "../resources/images/lip-tint.jpg",
+        "alt": "Lip Tints"
     },
     {
         "id": 7,
         "name": "Lawn Dress",
         "price": 15,
-        "type": "clothes"
+        "type": "clothes",
+        "image": "../resources/images/lawn-dress.jpg",
+        "alt": "Lawn Dress"
+    },
+    {
+        "id": 13,
+        "name": "Shoes",
+        "price": 15,
+        "type": "clothes",
+        "image": "../resources/images/shoes.jpg",
+        "alt": "Lawn Dress"
+    },
+    {
+        "id": 14,
+        "name": "Jacket",
+        "price": 15,
+        "type": "clothes",
+        "image": "../resources/images/jacket.jpg",
+        "alt": "Lawn Dress"
+    },
+    {
+        "id": 15,
+        "name": "Swim Suit",
+        "price": 15,
+        "type": "clothes",
+        "image": "../resources/images/swim-suit.jpg",
+        "alt": "Lawn Dress"
     },
     {
         "id": 8,
         "name": "Lawn-Chiffon Combo",
         "price": 19.99,
-        "type": "clothes"
+        "type": "clothes",
+        "image": "../resources/images/scarf.jpg",
+        "alt": "Lawn-Chiffon Combo"
     },
     {
         "id": 9,
         "name": "Toddler Frock",
         "price": 9.99,
-        "type": "clothes"
+        "type": "clothes",
+        "image": "../resources/images/toddler-dress.jpg",
+        "alt": "Toddler Frock"
     }
 ]
