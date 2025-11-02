@@ -215,7 +215,7 @@ try {
 							<div class="card-body p-4">
 								<div class="text-center">
 									<h3 class="h5 fw-bolder">${product.name}</h3>
-									<p class="price">€${product.price}</p>
+									<p class="price">€${product.price.toFixed(2)}</p>
 								</div>
 							</div>
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
