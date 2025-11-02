@@ -141,19 +141,17 @@
 				<div class="modal-body">
 					<h3 class="text-center bill px-5">Shopping Cart</h3>
 					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">Product</th>
-									<th scope="col">Price</th>
-									<th scope="col">Qty.</th>
-									<th scope="col">Total <small>(with discount)</small></th>
-								</tr>
-							</thead>
-							<tbody id="cart_list">
+						<div class="table">
+							<div class="table-heading">
+								<div class="heading-col">Product</div>
+								<div class="heading-col">Price</div>
+								<div class="heading-col">Qty.</div>
+								<div class="heading-col">Total <small>(with discount)</small></th></div>							
+							</div>
+							<div id="cart_list" class="cart_list">
 								
-							</tbody>
-						</table>
+							</div>
+						</div>
 					</div>
 					<div class="text-center fs-3">
 						Total: $<span id="total_price">100</span>

@@ -139,9 +139,9 @@ try {
     }
 
     function createRow(product){
-        const row = document.createElement('tr');
-        const header = document.createElement('th');
-        header.setAttribute('scope', 'col')
+        const row = document.createElement('div');
+        const header = document.createElement('div');
+        row.classList.add('modal-row');
         header.textContent = product.name;
         const priceCell = createCell(product.price);
         const quantityCell = createInputCell(product.quantity);
@@ -163,7 +163,7 @@ try {
     
     function createCell(text){
         if(isNaN(Number(text))) throw new Error ('Cell value is not a number');
-        const col = document.createElement('td');
+        const col = document.createElement('div');
         col.textContent = Math.round(Number(text) * 100) / 100;
         return col;
     }
