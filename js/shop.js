@@ -43,7 +43,7 @@ try {
 
     const cartButton = document.querySelector('.cart-button');
     const cartListHtml = document.getElementById('cart_list');
-    const totalHtml = document.getElementById('total_price');
+    const totalHtml = document.getElementById('total-price');
     const checkoutBtn = document.getElementById("checkout-btn");
     const productCount = document.getElementById("count_product");
     const cleanCartBtn = document.getElementById("clean-cart");
@@ -89,8 +89,9 @@ try {
 
     // Exercise 3
     function calculateTotal(cart) {
-        const rawTotal = cart.total = cart.productList.reduce((acc, currProd) => acc + currProd.subtotal, 0);
-        return Math.round(rawTotal * 100)/100;
+        const rawTotal = cart.productList.reduce((acc, currProd) => acc + currProd.subtotal, 0);
+        cart.total = rawTotal;
+        return `€${(Math.round(rawTotal * 100)/100).toFixed(2)}`;
     }
 
     // Exercise 4
@@ -143,12 +144,40 @@ try {
         const header = document.createElement('div');
         row.classList.add('modal-row');
         header.textContent = product.name;
-        const priceCell = createCell(product.price);
-        const quantityCell = createInputCell(product.quantity);
-        const subtotalCell = createCell(product.subtotal);
+        const priceCell = createCell(product.price, '€');
+        const quantityCell = createInputCell(product);
+        const subtotalCell = createCell(product.subtotal, '€');
         row.append(header, priceCell, quantityCell, subtotalCell);
-        quantityCell.addEventListener('input', () => {
-            product.quantity = Number(quantityCell.value);
+        return row;
+    }
+    
+    function createCell(text, cur){
+        if(isNaN(Number(text))) throw new Error ('Cell value is not a number');
+        const col = document.createElement('div');
+        const val = Math.round(Number(text) * 100) / 100;
+        col.textContent = cur ? `${cur}${val.toFixed(2)}` : val;
+        return col;
+    }
+
+    function createInputCell(product){
+        const inputWrapper = document.createElement('div');
+        inputWrapper.classList.add('quantity-input-wrapper');
+        const input = document.createElement('div');
+        input.classList.add('quantity-input');
+        const incBtn = document.createElement('button');
+        const decBtn = document.createElement('button');
+        const btnGroup = document.createElement('div');
+        btnGroup.classList.add('quantity-btn-group');
+        btnGroup.append(incBtn, decBtn);
+        incBtn.classList.add('quantity-btn');
+        decBtn.classList.add('quantity-btn');
+
+        incBtn.textContent = '▲';
+        decBtn.textContent = '▼';
+
+        input.textContent = product.quantity;
+        input.addEventListener('quantity-button-click', () => {
+            product.quantity = Number(input.textContent);
             if(product.quantity === 0){
                 removeFromCart(cart, product.id)
             }
@@ -158,24 +187,18 @@ try {
             }
             printCart(cart.productList);
         })
-        return row;
-    }
-    
-    function createCell(text){
-        if(isNaN(Number(text))) throw new Error ('Cell value is not a number');
-        const col = document.createElement('div');
-        col.textContent = Math.round(Number(text) * 100) / 100;
-        return col;
-    }
+        inputWrapper.append(input, btnGroup);        
+        decBtn.addEventListener('click', () => {
+            input.textContent = Number(input.textContent) > 0 ? Number(input.textContent) - 1 : 0; 
+            input.dispatchEvent(new Event('quantity-button-click'));
+        })
 
-    function createInputCell(text){
-        const input = document.createElement('input');
-        input.setAttribute('type', 'number');
-        input.classList.add('quantity-input');
-        input.setAttribute('min', '0');
-        input.setAttribute('max', '50');
-        input.value = text;
-        return input;
+        incBtn.addEventListener('click', () => {
+            input.textContent = Number(input.textContent) < 50 ? Number(input.textContent) + 1 : 50; 
+            input.dispatchEvent(new Event('quantity-button-click'));
+        })
+
+        return inputWrapper;
     }
 
     function updateProductCount(){
@@ -192,7 +215,7 @@ try {
 							<div class="card-body p-4">
 								<div class="text-center">
 									<h3 class="h5 fw-bolder">${product.name}</h3>
-									<p class="price">$${product.price}</p>
+									<p class="price">€${product.price}</p>
 								</div>
 							</div>
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">

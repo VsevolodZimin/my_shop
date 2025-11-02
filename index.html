@@ -139,22 +139,23 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<h3 class="text-center bill px-5">Shopping Cart</h3>
 					<div class="table-responsive">
-						<div class="table">
+						<div class="modal-table">
 							<div class="table-heading">
 								<div class="heading-col">Product</div>
 								<div class="heading-col">Price</div>
 								<div class="heading-col">Qty.</div>
-								<div class="heading-col">Total <small>(with discount)</small></th></div>							
+								<div class="heading-col">Total</div>							
 							</div>
 							<div id="cart_list" class="cart_list">
 								
 							</div>
+							<div class="modal-total-line">
+								<div class="total-text">Total:</div>
+								<div class="total-price" id="total-price"></div>
+							</div>
 						</div>
-					</div>
-					<div class="text-center fs-3">
-						Total: $<span id="total_price">100</span>
+
 					</div>
 					<div class="text-center">
 						<a id="checkout-btn" href="checkout.html" class="btn btn-primary m-3">Checkout</a>
