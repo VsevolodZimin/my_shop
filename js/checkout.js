@@ -1,3 +1,6 @@
+const FIELD_INVALID = 'field-invalid'
+const FIELD_VALID = 'field-valid'
+
 const form = document.querySelector(".form");
 
 const fName = document.getElementById("fName");
@@ -11,21 +14,28 @@ const lettersOnly = /^[a-zA-Z]+$/;
 const numbersOnly = /^[0-9]+$/;
 const hasLetters = /[a-zA-Z]/;
 const hasNumbers = /[0-9]/;
-const isEmail = /[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\..+/;
+const isEmail = /[a-zA-Z0-9_]+@[a-zA-Z0-9]+\..+/;
 
 form.addEventListener('submit', (event) => {
 	resetFields(fName, fLastName, fEmail, fAddress, fPassword, fPhone);
 	form.classList.add('was-validated');
+	const fields = [fName, fLastName, fEmail, fAddress, fPassword, fPhone];
 	const invalidFields = validate(fName, fLastName, fEmail, fAddress, fPassword, fPhone);
+	const validFields = fields.filter(field => !invalidFields.includes(field));
+	console.log('valid fields: ', validFields);
 	if(invalidFields.length > 0) {
 		event.preventDefault();
-		invalidFields.forEach(field => field.classList.add('is-invalid'));
+		invalidFields.forEach(field => field.classList.add(FIELD_INVALID));
 		alert("Please check the fields and try again");
 	}
 	else{
-		resetFields(fName, fLastName, fEmail, fAddress, fPassword, fPhone);
 		alert("Form submitted successfully");
 	}
+	validFields.forEach(filed => {
+		if(!filed.classList.contains(FIELD_VALID)){ 
+			filed.classList.add(FIELD_VALID) 
+		}
+	})
 })
 
 
@@ -45,16 +55,17 @@ const validate = () => {
 
 
 	// Validate fields entered by the user: name, phone, password, and email
-	checkMinimumInput(fName, fLastName, fEmail, fAddress, fPassword, fPhone);
+	checkMinimumInput(3, fName, fLastName, fEmail, fAddress, fPassword);
+	checkMinimumInput(9, fPhone);
 	checkPattern(lettersOnly, fName, fLastName);
 	checkPattern(numbersOnly, fPhone);
 	checkPattern(hasLetters, fPassword);
 	checkPattern(hasNumbers, fPassword);
 	checkPattern(isEmail, fEmail);
 
-	function checkMinimumInput(...fields){
+	function checkMinimumInput(min, ...fields){
 		fields.forEach(field => {
-			if(field.value.trim().length < 3){
+			if(field.value.trim().length < min){
 				if(!invalidFields.includes(field)){
 					invalidFields.push(field);
 				}		
@@ -77,8 +88,11 @@ const validate = () => {
 
 function resetFields(...fields) {
 	fields.forEach(f => {
-		if(f.classList.contains('is-invalid')) {
-			f.classList.remove('is-invalid');
+		if(f.classList.contains(FIELD_INVALID)) {
+			f.classList.remove(FIELD_INVALID);
+		}
+		if(f.classList.contains(FIELD_VALID)) {
+			f.classList.remove(FIELD_VALID);
 		}
 	})
 }

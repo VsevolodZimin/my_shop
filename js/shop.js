@@ -78,7 +78,6 @@ try {
             const product = products.find(p => p.id === id)
             cart.productList.push({ ...product, quantity: 1, subtotal: product.price })
         }
-        console.log(cart.productList);
     }
 
     // Exercise 2
