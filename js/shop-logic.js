@@ -149,7 +149,7 @@ function printCart(productList, productCount) {
 }
 
 
-export function createProductCard(cart, productsJSON, product){
+export function createProductCard(productsJSON, product){
     const element = document.createElement('div');
     element.innerHTML = `<div class="col mb-5">
                     <article class="card product-card h-100">
@@ -190,15 +190,15 @@ function initCards(productsJSON, cart){
 
     const groceryElements = productsJSON
     .filter(prod => prod.type === 'grocery')
-    .map(prod => createProductCard(cart, productsJSON, prod));
+    .map(prod => createProductCard(productsJSON, prod));
 
     const beautyElements = productsJSON
     .filter(prod => prod.type === 'beauty')
-    .map(prod => createProductCard(cart, productsJSON, prod));
+    .map(prod => createProductCard(productsJSON, prod));
 
     const clothesElements = productsJSON
     .filter(prod => prod.type === 'clothes')
-    .map(prod => createProductCard(cart, productsJSON, prod));
+    .map(prod => createProductCard(productsJSON, prod));
 
     groceryContainerUI.append(...groceryElements);
     beautyContainerUI.append(...beautyElements);
@@ -223,3 +223,7 @@ function handleAddToCartButton(addToCartButton, productsJSON, cart){
         throw err;
     }
 }
+
+function blockcheckoutButton(cartList, checkoutButton){
+    if(!cartList.length) checkoutBtn.disabled = true;
+};
