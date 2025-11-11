@@ -99,21 +99,27 @@ function initModal(){
 
 function createRow(product){
     const row = document.createElement('div');
-    const header = document.createElement('div');
     row.classList.add('modal-row');
-    header.textContent = product.name;
-    const priceCell = createRegularCell(product.price, '€');
+
+    const nameCell = createTextCell(product.name);
+    const priceCell = createNumberCell(product.price, '€');
     const quantityCell = createInputCell(product);
-    const subtotalCell = createRegularCell(product.subtotal, '€');
-    row.append(header, priceCell, quantityCell, subtotalCell);
+    const subtotalCell = createNumberCell(product.subtotal, '€');
+    row.append(nameCell, priceCell, quantityCell, subtotalCell);
     return row;
 }
 
-function createRegularCell(text, cur){
+function createNumberCell(text, cur){
     if(isNaN(Number(text))) throw new Error ('Cell value is not a number');
     const col = document.createElement('div');
     const val = Math.round(Number(text) * 100) / 100;
     col.textContent = cur ? `${cur}${val.toFixed(2)}` : val;
+    return col;
+}
+
+function createTextCell(text){
+    const col = document.createElement('div');
+    col.textContent = text;
     return col;
 }
 
